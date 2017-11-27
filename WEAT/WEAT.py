@@ -1,5 +1,4 @@
 import numpy as np
-import gensim
 from scipy.misc import comb
 
 import functools
@@ -8,28 +7,6 @@ from random import shuffle
 
 CACHE_SIZE = 2**8  # 256
 
-# The following 5 lines should happen outside this module
-if False:
-    DEB_GLOVE_EMBED = '../random/dnd_text_gen/glove/glove.6B.300d_debiased.txt'
-    NORMED_EMBED_PATH = ''
-    model = gensim.models.KeyedVectors.load_word2vec_format(DEB_GLOVE_EMBED)
-    model.init_sims(replace=True)
-    compare_to = frozenset(['surfboard', 'brick', 'elephant', 'inspiration'])
-
-    # more example code for debug
-    # targets should be 2 sets of equal size
-    target_X = set(['programmer', 'engineer', 'scientist', 'athlete', 'doctor',
-                    'six', 'seven', 'eight'])
-    target_Y = set(['nurse', 'teacher', 'librarian', 'dancer', 'cheerleader',
-                    'Six', 'Seven', 'Eight'])
-    targets = target_X.union(target_Y)
-    # attributes need not be of equal size
-    attr_A = frozenset('male, man, boy, brother, he, him, his,son'.split(', '))
-    attr_B = frozenset(
-        'female, woman, girl, sister, she, her, hers, daughter'.split(', '))
-
-
-# BEGIN real module code
 
 class WEAT(object):
     """Word Embedding Association Test"""
